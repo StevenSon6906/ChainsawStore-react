@@ -15,6 +15,6 @@ ViewButton.propTypes = {
 };
 
 ViewButton.defaultProps = {
-    size: 'btn-sm', // Розмір за замовчуванням
-    fullWidth: false, // За замовчуванням кнопка не розширюється на всю ширину
+    size: 'btn-sm',
+    fullWidth: false,
 };

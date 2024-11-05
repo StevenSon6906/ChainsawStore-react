@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 
 export default function InfoTiles() {
-    // State to control visibility of additional content
     const [showMore, setShowMore] = useState(false);
 
     const handleViewMore = () => {
@@ -35,14 +34,13 @@ export default function InfoTiles() {
                     </div>
                 </div>
 
-                {/* Button to show more content */}
+
                 <div className='text-center'>
                     <button onClick={handleViewMore} className='btn btn-lg btn-warning mt-3'>
                         {showMore ? 'View less' : 'View more'}
                     </button>
                 </div>
 
-                {/* Additional content displayed when 'showMore' is true */}
                 {showMore && (
                     <div className="additional-content mt-4">
                         <h2 className="fw-bold text-center">Додаткова інформація</h2>
