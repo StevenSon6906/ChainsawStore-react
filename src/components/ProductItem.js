@@ -1,6 +1,6 @@
 import React from 'react';
-import ViewButton from "./ViewButton";
-import  placeholder from "./placeholder.jpg"
+import ProductViewButton from "./ProductViewButton";
+import placeholder from "../images/placeholder.jpg"
 
 function ProductItem({ name, price, color, brand}) {
     return (
@@ -23,7 +23,7 @@ function ProductItem({ name, price, color, brand}) {
                     <p className="card-text fw-bold">Price :</p>
                     <p className="card-text">${price}</p>
                 </div>
-                <ViewButton fullWidth/>
+                <ProductViewButton fullWidth/>
             </div>
         </div>
     );

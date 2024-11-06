@@ -9,7 +9,7 @@ function ProductFilter({ onApplyFilters }) {
     };
 
     return (
-        <div className="filters mb-3 d-flex justify-content-between align-items-center">
+        <div className="filters mb-4 d-flex justify-content-between align-items-center">
             <div className="d-flex">
                 <select
                     value={colorFilter}
@@ -35,8 +35,8 @@ function ProductFilter({ onApplyFilters }) {
                 </select>
             </div>
 
-            <button onClick={handleApply} className="btn btn-primary"
-                    style={{ width: '150px' }}>
+            <button onClick={handleApply} className="btn btn-primary btn-success"
+                    style={{ width: '150px'}}>
                 Apply
             </button>
         </div>
