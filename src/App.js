@@ -1,7 +1,6 @@
 
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-// import Header from './components/Header';
 import Navbar from './components/NavBar/Navbar';
 import Home from './pages/Home';
 import ProductList from './pages/ProductList';
@@ -26,3 +25,4 @@ function App() {
 }
 
 export default App;
+

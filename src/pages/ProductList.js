@@ -1,7 +1,9 @@
-
+// src/pages/ProductList.js
+// src/pages/ProductList.js
 import React, { useState } from 'react';
 import ProductItem from '../components/ProductItem';
 import ProductFilter from '../components/ProductFilter';
+import ProductSearch from "../components/ProductSearch";
 
 function ProductList() {
     const products = [
@@ -13,21 +15,29 @@ function ProductList() {
     ];
 
     const [appliedFilters, setAppliedFilters] = useState({ color: '', brand: '' });
+    const [searchQuery, setSearchQuery] = useState('');
 
     const applyFilters = (filters) => {
         setAppliedFilters(filters);
     };
 
+    const handleSearch = (query) => {
+        setSearchQuery(query.toLowerCase());
+    };
+
     const filteredProducts = products.filter(product => {
         const matchesColor = appliedFilters.color ? product.color === appliedFilters.color : true;
         const matchesBrand = appliedFilters.brand ? product.brand === appliedFilters.brand : true;
-        return matchesColor && matchesBrand;
+        const matchesSearch = searchQuery ? product.name.toLowerCase().includes(searchQuery) : true;
+        return matchesColor && matchesBrand && matchesSearch;
     });
 
     return (
         <div>
-            <ProductFilter onApplyFilters={applyFilters} />
-
+            <div className="flex-row">
+                <ProductSearch onSearch={handleSearch} />
+                <ProductFilter onApplyFilters={applyFilters} />
+            </div>
             <div className="row">
                 {filteredProducts.length > 0 ? (
                     filteredProducts.map((product) => (

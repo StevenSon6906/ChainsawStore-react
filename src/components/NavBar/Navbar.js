@@ -1,13 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useLocation } from 'react-router-dom';
-import ProductSearch from "../ProductSearch";
+// import { useLocation } from 'react-router-dom';
+// import ProductSearch from "../ProductSearch";
 import './Navbar.css'
 
 export default function Navbar() {
-    const location = useLocation();
-
-    const showSearch = location.pathname === '/products';
+    // const location = useLocation();
+    //
+    // const showSearch = location.pathname === '/products';
     return (
             <nav className="navbar navbar-expand-lg navbar-light bg-black ">
                 <div className="container">
@@ -24,9 +24,9 @@ export default function Navbar() {
                             <Link className="nav-item nav-link text-light" to="/products">Catalog</Link>
                         </div>
                     </div>
-                    {showSearch && (
-                        <ProductSearch/>
-                    )}
+                    {/*{showSearch && (*/}
+                    {/*    <ProductSearch/>*/}
+                    {/*)}*/}
                 </div>
             </nav>
     );
