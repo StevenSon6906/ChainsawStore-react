@@ -1,9 +1,9 @@
 // src/pages/ProductList.js
-// src/pages/ProductList.js
 import React, { useState } from 'react';
 import ProductItem from '../components/ProductItem';
 import ProductFilter from '../components/ProductFilter';
 import ProductSearch from "../components/ProductSearch";
+import { Link } from 'react-router-dom';
 
 function ProductList() {
     const products = [
@@ -43,6 +43,7 @@ function ProductList() {
                     filteredProducts.map((product) => (
                         <div className="col-md-3 mb-3" key={product.id}>
                             <ProductItem
+                                id={product.id}
                                 name={product.name}
                                 price={product.price}
                                 brand={product.brand}

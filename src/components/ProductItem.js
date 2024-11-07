@@ -4,13 +4,13 @@ import ProductViewButton from "./ProductViewButton";
 import placeholder from "../images/placeholder.jpg";
 
 function ProductItem({ id, name, price, color, brand }) {
+    const productData = { id, name, price, color, brand }; // Construct product object
+
     return (
         <div className="card mb-4 border-black border-1">
             <div className="card-body">
                 <img className="card-img-top mb-3" src={placeholder} alt=""/>
                 <h5 className="card-title text-center">{name}</h5>
-                <p className="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                    incididunt ut labore et dolore magna aliqua.</p>
                 <div className="d-flex justify-content-between">
                     <p className="card-text fw-bold">Brand :</p>
                     <p className="card-text">{brand}</p>
@@ -23,7 +23,7 @@ function ProductItem({ id, name, price, color, brand }) {
                     <p className="card-text fw-bold">Price :</p>
                     <p className="card-text">${price}</p>
                 </div>
-                <ProductViewButton productId={id} fullWidth/>
+                <ProductViewButton productId={id} productData={productData} /> {/* Pass product data */}
             </div>
         </div>
     );

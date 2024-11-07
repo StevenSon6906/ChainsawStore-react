@@ -1,9 +1,10 @@
-
+// src/App.js
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Navbar from './components/NavBar/Navbar';
 import Home from './pages/Home';
 import ProductList from './pages/ProductList';
+import ProductDetail from './pages/ProductDetail';
 import Footer from './components/Footer';
 import './App.css';
 
@@ -16,6 +17,7 @@ function App() {
                     <Routes>
                         <Route path="/" element={<Home />} />
                         <Route path="/products" element={<ProductList />} />
+                        <Route path="/products/:id" element={<ProductDetail />} /> {/* Added ProductDetail route */}
                     </Routes>
                 </div>
                 <Footer />
@@ -25,4 +27,3 @@ function App() {
 }
 
 export default App;
-
