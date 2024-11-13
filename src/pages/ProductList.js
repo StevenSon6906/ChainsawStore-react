@@ -1,21 +1,17 @@
-// src/pages/ProductList.js
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ProductItem from '../components/ProductItem';
 import ProductFilter from '../components/ProductFilter';
-import ProductSearch from "../components/ProductSearch";
-import { Link } from 'react-router-dom';
+import ProductSearch from '../components/ProductSearch';
+import { useProductContext } from '../context/ProductContext';
 
 function ProductList() {
-    const products = [
-        { id: 1, name: 'Product 1', price: 10, brand: 'DniproM', color: 'Orange' },
-        { id: 2, name: 'Product 2', price: 20, brand: 'DniproM', color: 'Black' },
-        { id: 3, name: 'Product 3', price: 30, brand: 'DniproM', color: 'Black' },
-        { id: 4, name: 'Product 4', price: 40, brand: 'Waltz', color: 'Gray' },
-        { id: 5, name: 'Product 5', price: 50, brand: 'Waltz', color: 'Gray' },
-    ];
-
+    const { products, fetchProducts } = useProductContext();
     const [appliedFilters, setAppliedFilters] = useState({ color: '', brand: '' });
     const [searchQuery, setSearchQuery] = useState('');
+
+    useEffect(() => {
+        fetchProducts();
+    }, [fetchProducts]);
 
     const applyFilters = (filters) => {
         setAppliedFilters(filters);
@@ -25,7 +21,7 @@ function ProductList() {
         setSearchQuery(query.toLowerCase());
     };
 
-    const filteredProducts = products.filter(product => {
+    const filteredProducts = products.filter((product) => {
         const matchesColor = appliedFilters.color ? product.color === appliedFilters.color : true;
         const matchesBrand = appliedFilters.brand ? product.brand === appliedFilters.brand : true;
         const matchesSearch = searchQuery ? product.name.toLowerCase().includes(searchQuery) : true;
@@ -48,11 +44,12 @@ function ProductList() {
                                 price={product.price}
                                 brand={product.brand}
                                 color={product.color}
+                                imgUrl={product.imgUrl}
                             />
                         </div>
                     ))
                 ) : (
-                    <p className='text-center'>Нічого показувати</p>
+                    <p className="text-center">Нічого показувати</p>
                 )}
             </div>
         </div>

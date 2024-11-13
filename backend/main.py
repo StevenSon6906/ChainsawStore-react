@@ -20,7 +20,8 @@ def create_chainsaw():
     brand = request.json.get("brand")
     color = request.json.get("color")
 
-    if not name or not watts or not rpm or not url or price or brand or not color:
+    # Виправлена перевірка на відсутні параметри
+    if not all([name, watts, rpm, url, price, brand, color]):
         return jsonify({"message": "Missing parameters"}), 400
 
     new_chainsaw = Chainsaws(name=name, watts=watts, rpm=rpm, url=url, price=price, brand=brand, color=color)
