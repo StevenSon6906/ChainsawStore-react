@@ -1,4 +1,3 @@
-// src/components/ProductSearch.js
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
@@ -6,12 +5,12 @@ function ProductSearch({ onSearch }) {
     const [query, setQuery] = useState('');
 
     const handleInputChange = (e) => {
-        setQuery(e.target.value); // Оновлюємо локальне значення пошуку
+        setQuery(e.target.value);
     };
 
     const handleFormSubmit = (e) => {
         e.preventDefault();
-        onSearch(query); // Передаємо введене значення пошуку в ProductList при надсиланні форми
+        onSearch(query);
     };
 
     return (
