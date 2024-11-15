@@ -1,5 +1,4 @@
 import React from 'react';
-import styles from './InfoWindow.module.css';
 
 
 export default function InfoWindow() {

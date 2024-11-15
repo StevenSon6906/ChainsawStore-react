@@ -18,9 +18,9 @@ function ProductFilter({ onApplyFilters }) {
                     style={{ width: '200px' }}
                 >
                     <option value="">All Colors</option>
-                    <option value="Orange">Orange</option>
-                    <option value="Black">Black</option>
-                    <option value="Gray">Gray</option>
+                    <option value="orange">Orange</option>
+                    <option value="black">Black</option>
+                    <option value="gray">Gray</option>
                 </select>
 
                 <select

@@ -2,11 +2,39 @@ from flask import request, jsonify
 from config import app, db
 from models import Chainsaws
 
+#get chainsaws (added filter functionality)
 @app.route("/api/chainsaws", methods=['GET'])
 def get_chainsaws():
-    chainsaws = Chainsaws.query.all()
-    json_chainsaws = list(map(lambda x: x.to_json(), chainsaws))
+    color = request.args.get('color')
+    brand = request.args.get('brand')
+
+    query = Chainsaws.query
+
+    if color:
+        query = query.filter_by(color=color)
+    if brand:
+        query = query.filter_by(brand=brand)
+
+    chainsaws = query.all()
+    json_chainsaws = [chainsaw.to_json() for chainsaw in chainsaws]
     return jsonify(json_chainsaws)
+
+#get chainsaw by ID
+@app.route("/api/chainsaws/<int:id>", methods=["GET"])
+def get_chainsaw(id):
+    chainsaw = Chainsaws.query.get(id)
+    if chainsaw is None:
+        return jsonify({"message": "Chainsaw not found"}), 404
+
+    return jsonify({
+        "name": chainsaw.name,
+        "watts": chainsaw.watts,
+        "rotationsPerMinute": chainsaw.rpm,
+        "imgUrl": chainsaw.url,
+        "price": chainsaw.price,
+        "brand": chainsaw.brand,
+        "color": chainsaw.color
+    }), 200
 
 @app.route("/api/chainsaws", methods=['POST'])
 def create_chainsaw():
@@ -20,7 +48,7 @@ def create_chainsaw():
     brand = request.json.get("brand")
     color = request.json.get("color")
 
-    # Виправлена перевірка на відсутні параметри
+
     if not all([name, watts, rpm, url, price, brand, color]):
         return jsonify({"message": "Missing parameters"}), 400
 
