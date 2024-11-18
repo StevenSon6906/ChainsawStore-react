@@ -1,48 +1,42 @@
-
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState } from 'react';
+import { fetchProducts, fetchProductById } from '../api/api';
 
 const ProductContext = createContext();
 
 export const ProductProvider = ({ children }) => {
     const [products, setProducts] = useState([]);
     const [productDetail, setProductDetail] = useState(null);
+    const [loading, setLoading] = useState(false);
 
-    const fetchProducts = async () => {
+    const getProducts = async (filters) => {
+        setLoading(true);
         try {
-            const testProducts = [
-                { id: 1, name: 'Product 1', price: 10, brand: 'DniproM', color: 'Orange' },
-                { id: 2, name: 'Product 2', price: 20, brand: 'DniproM', color: 'Black' },
-                { id: 3, name: 'Product 3', price: 30, brand: 'DniproM', color: 'Black' },
-                { id: 4, name: 'Product 4', price: 40, brand: 'Waltz', color: 'Gray' },
-                { id: 5, name: 'Product 5', price: 50, brand: 'Waltz', color: 'Gray' }
-            ];
-            setProducts(testProducts);
+            const data = await fetchProducts(filters);
+            setProducts(data);
         } catch (error) {
             console.error("Error fetching products:", error);
+        } finally {
+            setLoading(false);
         }
     };
 
-
-    const fetchProductById = async (id) => {
+    const getProductById = async (id) => {
+        setLoading(true);
         try {
-            const product = products.find(p => p.id === parseInt(id));
-            setProductDetail(product || null);
+            const data = await fetchProductById(id);
+            setProductDetail(data);
         } catch (error) {
             console.error("Error fetching product detail:", error);
+        } finally {
+            setLoading(false);
         }
     };
 
-    useEffect(() => {
-        fetchProducts();
-    }, []);
     return (
-        <ProductContext.Provider value={{ products, productDetail, fetchProducts, fetchProductById }}>
+        <ProductContext.Provider value={{ products, productDetail, getProducts, getProductById, loading }}>
             {children}
         </ProductContext.Provider>
     );
 };
 
-export const useProductContext = () => {
-    return useContext(ProductContext);
-};
-
+export const useProductContext = () => useContext(ProductContext);

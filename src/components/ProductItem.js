@@ -7,10 +7,10 @@ function ProductItem({ id, name, price, color, brand, imgUrl }) {
     const productData = { id, name, price, color, brand, imgUrl };
 
     return (
-        <div className="card mb-4 border-black border-1">
+        <div className="card mb-4  border-1 shadow">
             <div className="card-body">
                 <img
-                    className="card-img-top mb-3"
+                    className="card-img-top mb-3 border border-2 rounded "
                     src={imgUrl || placeholder}
                     alt={name || "Product image"}
                 />

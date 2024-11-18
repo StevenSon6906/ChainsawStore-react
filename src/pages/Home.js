@@ -1,5 +1,5 @@
 import React from 'react';
-import InfoWindow from "../components/InfoWindow/InfoWindow";
+import InfoWindow from "../components/InfoWindow";
 import InfoTiles from "../components/InfoTiles";
 
 function Home() {
