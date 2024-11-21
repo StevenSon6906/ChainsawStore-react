@@ -7,7 +7,6 @@ import ProductDetail from './pages/ProductDetail';
 import Footer from './components/Footer';
 import { ProductProvider } from './context/ProductContext';
 import './App.css';
-import Cart from "./pages/Cart";
 
 function App() {
     return (
@@ -20,7 +19,6 @@ function App() {
                             <Route path="/" element={<Home />} />
                             <Route path="/products" element={<ProductList />} />
                             <Route path="/products/:id" element={<ProductDetail />} />
-                            <Route path="/cart" element={<Cart />} />
                         </Routes>
                     </div>
                     <Footer />

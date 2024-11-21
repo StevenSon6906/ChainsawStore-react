@@ -27,7 +27,6 @@ def get_chainsaw(id):
         return jsonify({"message": "Chainsaw not found"}), 404
 
     return jsonify({
-        "id": chainsaw.id,
         "name": chainsaw.name,
         "watts": chainsaw.watts,
         "rotationsPerMinute": chainsaw.rpm,
