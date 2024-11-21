@@ -1,13 +1,15 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Navbar from './components/NavBar/Navbar';
 import Home from './pages/Home';
 import ProductList from './pages/ProductList';
 import ProductDetail from './pages/ProductDetail';
+import Cart from "./pages/Cart";
+import Form from "./pages/Form";
+import Success from "./pages/Success";
 import Footer from './components/Footer';
+import Navbar from './components/NavBar/Navbar';
 import { ProductProvider } from './context/ProductContext';
 import './App.css';
-import Cart from "./pages/Cart";
 
 function App() {
     return (
@@ -21,6 +23,8 @@ function App() {
                             <Route path="/products" element={<ProductList />} />
                             <Route path="/products/:id" element={<ProductDetail />} />
                             <Route path="/cart" element={<Cart />} />
+                            <Route path="/checkout" element={<Form />} />
+                            <Route path="/success" element={<Success />} />
                         </Routes>
                     </div>
                     <Footer />

@@ -43,7 +43,7 @@ const Cart = () => {
                     </div>
                     <div className="d-flex justify-content-between mt-4">
                         <Link to="/products" className="btn btn-secondary">Back to Catalogue</Link>
-                        <button className="btn btn-success">Checkout</button>
+                        <Link to="/checkout" className="btn btn-success">Checkout</Link>
                     </div>
                 </>
             )}
