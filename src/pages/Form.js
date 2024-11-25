@@ -28,11 +28,11 @@ const Form = () => {
         email: Yup.string()
             .required("Email is required")
             .email("Email is invalid"),
-        phone: Yup.string()
+        phone: Yup.number()
             .required("Phone number is required")
-            .matches(/^\d+$/, "Phone number must contain only digits")
-            .min(10, "Phone number must be at least 10 digits")
-            .max(10, "Phone number must be at most 10 digits"),
+            .integer("Phone number must be an integer")
+            .min(1000000000, "Phone number must be at least 10 digits")
+            .max(9999999999, "Phone number must be at most 10 digits"),
         address: Yup.string()
             .required("Address is required")
             .max(100, "Address must be 100 characters or less"),
@@ -48,7 +48,6 @@ const Form = () => {
         },
         validationSchema,
         onSubmit: (values) => {
-            console.log("Form Submitted:", values);
             navigate("/success");
         },
     });
@@ -58,7 +57,6 @@ const Form = () => {
             <div className="w-50">
                 <h1 className="text-center mb-4">Checkout Form</h1>
                 <form onSubmit={formik.handleSubmit}>
-                    {/* First Name and Last Name */}
                     <div className="row mb-3">
                         <div className="col">
                             <label htmlFor="firstName" className="form-label">First Name</label>
@@ -86,7 +84,6 @@ const Form = () => {
                         </div>
                     </div>
 
-                    {/* Email and Phone */}
                     <div className="row mb-3">
                         <div className="col">
                             <label htmlFor="email" className="form-label">Email</label>
@@ -105,7 +102,7 @@ const Form = () => {
                             <input
                                 id="phone"
                                 name="phone"
-                                type="text"
+                                type="number"
                                 className={`form-control ${
                                     formik.touched.phone && formik.errors.phone ? "is-invalid" : ""
                                 }`}
@@ -114,7 +111,6 @@ const Form = () => {
                         </div>
                     </div>
 
-                    {/* Address */}
                     <div className="mb-3">
                         <label htmlFor="address" className="form-label">Address</label>
                         <input
@@ -128,12 +124,10 @@ const Form = () => {
                         />
                     </div>
 
-                    {/* Error Message Component */}
                     {Object.keys(formik.errors).length > 0 && (
                         <ErrorMessage errors={formik.errors} touched={formik.touched} />
                     )}
 
-                    {/* Buttons */}
                     <div className="d-flex justify-content-between mt-4">
                         <button
                             type="button"

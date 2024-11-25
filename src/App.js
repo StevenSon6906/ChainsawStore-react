@@ -6,8 +6,11 @@ import ProductDetail from './pages/ProductDetail';
 import Cart from "./pages/Cart";
 import Form from "./pages/Form";
 import Success from "./pages/Success";
+import Login from './pages/Login';
+import Register from './pages/Register';
 import Footer from './components/Footer';
 import Navbar from './components/NavBar/Navbar';
+import ProtectedRoute from './components/ProtectedRoute';
 import { ProductProvider } from './context/ProductContext';
 import './App.css';
 
@@ -19,12 +22,59 @@ function App() {
                     <Navbar />
                     <div className="container flex-grow-1 my-4">
                         <Routes>
-                            <Route path="/" element={<Home />} />
-                            <Route path="/products" element={<ProductList />} />
-                            <Route path="/products/:id" element={<ProductDetail />} />
-                            <Route path="/cart" element={<Cart />} />
-                            <Route path="/checkout" element={<Form />} />
-                            <Route path="/success" element={<Success />} />
+
+                            <Route path="/login" element={<Login />} />
+                            <Route path="/register" element={<Register />} />
+
+                            {/* Protected Routes */}
+                            <Route
+                                path="/"
+                                element={
+                                    <ProtectedRoute>
+                                        <Home />
+                                    </ProtectedRoute>
+                                }
+                            />
+                            <Route
+                                path="/products"
+                                element={
+                                    <ProtectedRoute>
+                                        <ProductList />
+                                    </ProtectedRoute>
+                                }
+                            />
+                            <Route
+                                path="/products/:id"
+                                element={
+                                    <ProtectedRoute>
+                                        <ProductDetail />
+                                    </ProtectedRoute>
+                                }
+                            />
+                            <Route
+                                path="/cart"
+                                element={
+                                    <ProtectedRoute>
+                                        <Cart />
+                                    </ProtectedRoute>
+                                }
+                            />
+                            <Route
+                                path="/checkout"
+                                element={
+                                    <ProtectedRoute>
+                                        <Form />
+                                    </ProtectedRoute>
+                                }
+                            />
+                            <Route
+                                path="/success"
+                                element={
+                                    <ProtectedRoute>
+                                        <Success />
+                                    </ProtectedRoute>
+                                }
+                            />
                         </Routes>
                     </div>
                     <Footer />
